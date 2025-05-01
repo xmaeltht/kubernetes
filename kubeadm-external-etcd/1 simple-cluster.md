@@ -6,10 +6,10 @@
 ##### Download etcd & etcdctl binaries from Github
 ```
 {
-  ETCD_VER=v3.4.10
+  ETCD_VER=v3.5.1
   wget -q --show-progress "https://github.com/etcd-io/etcd/releases/download/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz"
-  tar zxf etcd-v3.4.10-linux-amd64.tar.gz
-  mv etcd-v3.4.10-linux-amd64/etcd* /usr/local/bin/
+  tar zxf etcd-v3.5.1-linux-amd64.tar.gz
+  mv etcd-v3.5.1-linux-amd64/etcd* /usr/local/bin/
   rm -rf etcd*
 }
 ```
@@ -31,7 +31,7 @@ cat <<EOF >/etc/systemd/system/etcd.service
 Description=etcd
 
 [Service]
-Type=notify
+Type=exec
 ExecStart=/usr/local/bin/etcd \\
   --name ${ETCD_NAME} \\
   --initial-advertise-peer-urls http://${NODE_IP}:2380 \\
